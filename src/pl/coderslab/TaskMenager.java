@@ -9,7 +9,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class TaskMenager {
-    static String [][] tasks; // dlaczego jak mam tasks w mainie wszedzie gdzie chce jej uzyc mam blad ze zmiennej nie ma?
+    static String [][] tasks;
 
     public static void main(String[] args) {
         String fileName = "tasks.csv";
@@ -56,12 +56,14 @@ public class TaskMenager {
             System.out.println("File not found!");
             System.exit(0);
         }
+
         String[][] array = null;
+
         try {
             List<String> lines = Files.readAllLines(path);
             array = new String[lines.size()][lines.get(0).split(", ").length];
-                    for (int i = 0; i < lines.size(); i++){ //tutaj miałem duzy problem i szczerze to w 100% patrzyłem na waszego gotowca.
-                        String [] tab = lines.get(i).split(","); // jakby jakos to rozjaśnić byłoby wspaniale
+                    for (int i = 0; i < lines.size(); i++){
+                        String [] tab = lines.get(i).split(",");
                         for(int j = 0; j < tab.length; j++) {
                             array[i][j] = tab[j];
                         }
@@ -84,10 +86,10 @@ public class TaskMenager {
         System.out.println("Task is important? (False / True)");
         String bool = scanner.nextLine();
 
-        tasks = Arrays.copyOf(tasks, tasks.length+1);  // dlaczego jak chciałem dac argument metody np: String [][] array i potem
-        tasks[tasks.length-1]= new String[3];                    // przy wywoalniu funkcji wpisac tablice "tasks" program nie działa??
-        tasks[tasks.length-1][0] = desctription;                // podejrzewam że reszta metod bedzie tak samo działało, że bede musial podstawić oryginal tablicy
-        tasks[tasks.length-1][1] = date;                        // sprawdziłem to reszta funckji działa jak pdomieniam na oryginal tablic tasks. dlaczego?
+        tasks = Arrays.copyOf(tasks, tasks.length+1);
+        tasks[tasks.length-1]= new String[3];
+        tasks[tasks.length-1][0] = desctription;
+        tasks[tasks.length-1][1] = date;
         tasks[tasks.length-1][2] = bool;
     }
 
